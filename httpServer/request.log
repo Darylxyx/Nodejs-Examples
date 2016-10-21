@@ -1,0 +1,4 @@
+Server_method: GET
+Server_url: /
+Server_headers: {"host":"localhost:2000","connection":"keep-alive","cache-control":"max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36","accept-encoding":"gzip, deflate, sdch","accept-language":"zh-CN,zh;q=0.8"}
+Server_httpVersion: 1.1
