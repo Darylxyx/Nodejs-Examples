@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<title>Ajax获取nodejs服务器数据</title>
+</head>
+<body>
+<h1 id="title">
+</h1>
+<script>
+		
+	(function server() {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					document.querySelector('#title').innerHTML = xhr.responseText;
+				}
+			}
+		}
+		xhr.open('get', 'http://localhost:2000/', true);
+		xhr.send(null);
+	})();
+
+</script>
+</body>
+</html>
