@@ -58,3 +58,21 @@ var server2 = http.createServer((req, res) => {
 	}
 	res.end();
 }).listen(3000, 'localhost');
+
+var server3 = http.createServer((req, res) => {
+	if (req.url != '/favicon.ico') {
+		res.setTimeout(1000);
+		res.on('timeout', () => {
+			console.log('响应超时。');
+		});
+		setTimeout(() => {
+			res.setHeader('Content-Type', 'text/html');
+			res.write('<html><head><meta charset="utf-8" /></head>');
+			res.write('hello');
+			res.end();
+		}, 2000);
+
+		//如果res.setTimeout和res的timeout事件都没有指定回调函数，当响应超时时会自动关闭与HTTP客户端连接的socket端口。
+		//反之不会关闭，即使超时客户端依然能接收到数据。
+	}
+}).listen(4000, 'localhost');
