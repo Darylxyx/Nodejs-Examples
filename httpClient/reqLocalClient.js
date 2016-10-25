@@ -9,7 +9,17 @@ var options = {
 	method: 'POST'
 };
 
-var req = http.request(options);
+var req = http.request(options, (res) => {
+	res.on('data', (data) => {
+		console.log('接收到服务器返回的数据：' + data);
+	});
+	res.on('end', () => {
+		console.log('Trailers 头信息' + JSON.stringify(res.trailers));
+	});
+});
+
+req.write('你好');
+req.end('再见');
 
 req.on('error', (err) => {
 	if (err.code == 'ECONNRESET') {
@@ -18,7 +28,3 @@ req.on('error', (err) => {
 		console.log('请求过程发生错误，错误代码: ' + err.code);
 	}
 });
-
-req.write('你好');
-req.end('再见');
-

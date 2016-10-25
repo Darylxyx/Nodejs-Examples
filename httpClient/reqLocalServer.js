@@ -5,7 +5,12 @@ var http = require('http');
 var server = http.createServer((req, res) => {
 	if (req.url != '/favicon.ico') {
 		req.on('data', (data) => {
-			console.log('接收到的数据：' + data);
+			console.log('接收到来自客户端的请求数据：' + data);
+			res.write(data + 'back');
+		});
+
+		req.on('end', () => {
+			res.addTrailers({'addHeaders':'Hello World'});
 			res.end();
 		});
 	}
