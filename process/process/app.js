@@ -30,20 +30,46 @@ process.argv.forEach((item, index) => {
 
 // 由于nextTick可用来将一个函数推迟到代码中所编写的下一个异步方法的事件回调函数开始执行时调用，因此可以使用nextTick方法指定两个耗时操作同步进行。
 // 例：
-var fs = require('fs');
+var http = require('http'),
+	fs = require('fs');
 
-function secondTask() {
-	var file = fs.createReadStream('./KanKan.mp4');
-	file.on('data', (data) => {
-		console.log('Task_2 从视频文件中读取字节数：' + data.length);
+var opts = {
+	host: 'pageant-cdn.kankanapp.com.cn',
+	path: '/KanKan.mp4',
+	port: 80,
+	method: 'GET'
+};
+
+var req = http.request(opts, (res) => {
+	res.on('data', (data) => {
+		console.log('Task_1 接收到的数据字节数：' + data.length);
 	});
-}
-process.nextTick(secondTask);
-
-var file = fs.createReadStream('./KanKan.mp4');
-file.on('data', (data) => {
-	console.log('Task_1 从视频文件中读取字节数：' + data.length);
+	res.on('end', () => {
+		console.log('Task_1 数据接收完毕');
+	});
 });
+req.end();
+
+process.nextTick(secondTask);
+function secondTask() {
+	var opts = {
+		host: 'pageant-cdn.kankanapp.com.cn',
+		path: '/KanKan.mp4',
+		port: 80,
+		method: 'GET'
+	};
+
+	var req = http.request(opts, (res) => {
+		res.on('data', (data) => {
+			console.log('Task_2 接收到的数据字节数：' + data.length);
+		});
+		res.on('end', () => {
+			console.log('Task_2 数据接收完毕');
+		});
+	});
+
+	req.end();
+}
 
 // nextTick递归
 // process.maxTickDepth = 1000 
