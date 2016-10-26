@@ -57,9 +57,9 @@ file.on('data', (data) => {
 
 // 5. cwd(); 用于返回当前目录
 
-// console.log('当前目录：' + process.cwd());
-// process.chdir('../');
-// console.log('上级目录：' + process.cwd());
+console.log('当前目录：' + process.cwd());
+process.chdir('../');
+console.log('上级目录：' + process.cwd());
 
 // 6. exit([code]); 用于退出运行Node.js应用程序的进程，code:0表示正常退出，默认为0;
 // process.exit();
