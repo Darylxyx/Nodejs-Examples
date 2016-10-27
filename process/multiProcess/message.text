@@ -1,0 +1,6 @@
+子进程当前工作目录为：/Users/xieyuxiao/Desktop/Self/git/Nodejs-Demo/process/multiProcess
+0:/usr/local/bin/node
+1:/Users/xieyuxiao/Desktop/Self/git/Nodejs-Demo/process/multiProcess/test1.js
+2:one
+3:two
+4:three

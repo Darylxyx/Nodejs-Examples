@@ -8,7 +8,6 @@ process.argv.forEach((item, index) => {
 	console.log(index + ':' + item);
 });
 
-
 //process命令(REPL环境)
 
 //*方法:
