@@ -4,18 +4,7 @@ var mongo = require('mongodb'),
 	server = new mongo.Server(host, port, {auto_reconnect: true}),
 	db = new mongo.Db('node-mongo-test', server, {safe: true});
 
-var promise = new Promise((resolve, reject) => {
-	db.open((err, db) => {
-		if (err) {
-			throw err;
-		} else {
-			console.log('数据库创建成功');
-			resolve();
-		}
-	});
-});
-
-promise.then(() => {
+db.open((err, db) => {
 	db.collection('users', (err, collection) => {
 		if (!err) {
 			let data = {
@@ -24,11 +13,26 @@ promise.then(() => {
 			};
 			collection.insert(data, (err, docs) => {
 				console.log(docs);
-				db.close();
+				db.close(false);
 			});
 		}
 	});
+});
 
-}).catch((err) => {
-	throw err;
+db.on('close', (err, db) => {
+	if (err) throw err;
+	else {
+		db.open((err, db) => {
+			db.collection('users', (err, collection) => {
+				let data = {
+					users: 'Daryl_xyx',
+					age: 26
+				};
+				collection.insert(data, (err, doce) => {
+					console.log(doce);
+					db.close(true);
+				});
+			});
+		});
+	}
 });
