@@ -25,7 +25,7 @@ db.on('close', (err, db) => {
 		db.open((err, db) => {
 			db.collection('users', (err, collection) => {
 				let data = {
-					users: 'Daryl_xyx',
+					userName: 'Daryl_xyx',
 					age: 26
 				};
 				collection.insert(data, (err, doce) => {
