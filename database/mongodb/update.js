@@ -7,7 +7,7 @@ var mongo = require('mongodb'),
 db.open((err, db) => {
 	db.collection('users', (err, collection) => {
 		collection.find({userName: '张三'}).toArray((err, doc) => {
-			
+			collection.update({})
 		});
 	});
 });

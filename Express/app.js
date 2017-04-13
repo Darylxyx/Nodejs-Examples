@@ -1,25 +1,13 @@
-var express = require('express');
+var express = require('express'),
+	app = express();
 
-var app = express();
-
-// app.get('/index.html', (req, res) => {
-// 	// send方法封装了writeHead和setHeader方法
-// 	res.send('你好');
-// });
-
-// app.listen(2000, 'localhost');
-
-
-app.get('/index.html/:id(\\d+)', (req, res, next) => {
-	if (req.params.id > 10) {
-		next();
-	} else {
-		res.send('id参数值必须大于10');
-	}
+app.get('/', (req, res) => {
+	res.send('Hello World');
 });
 
-app.get('/index.html/:id(\\d+)', (req, res) => {
-	res.send('你好');
-});
+var server = app.listen(8081, () => {
+	var host = server.address().address,
+		port = server.address().port;
 
-app.listen(2000, 'localhost');
+	console.log('应用实例，访问地址为 http://%s:%s', host, port);
+});
