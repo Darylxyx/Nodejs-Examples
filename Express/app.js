@@ -1,6 +1,8 @@
 var express = require('express'),
 	app = express();
 
+console.log(process.env.NODE_EE);
+
 app.get('/', (req, res) => {
 	res.send('Hello World');
 });
