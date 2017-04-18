@@ -5,8 +5,6 @@ var path = require('path'),
 	config = require('config-lite')(__dirname),
 	routes = require('./routes/index');
 
-console.log(config.session);
-
 var app = express();
 
 // 静态资源目录
