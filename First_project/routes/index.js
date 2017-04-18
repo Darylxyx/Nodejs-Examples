@@ -1,8 +1,7 @@
-var express = require('express'),
-	router = express.Router();
+module.exports = (app) => {
+	app.get('/', (req, res) => {
+		res.send({desc: 'Hello Route'});
+	});
 
-router.get('/', (req, res) => {
-	res.send('Hello Express');
-});
-
-module.exports = router;
+	app.use('/signIn', require('./signIn'));
+};

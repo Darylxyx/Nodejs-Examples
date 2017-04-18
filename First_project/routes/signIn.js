@@ -1,8 +1,8 @@
 var express = require('express'),
 	router = express.Router();
 
-router.get('/:name', (req, res) => {
-	res.send('Hello ' + req.params.name);
+router.get('/', (req, res, next) => {
+	res.send('Hello Signin');
 });
 
 module.exports = router;
