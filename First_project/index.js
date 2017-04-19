@@ -8,7 +8,7 @@ var path = require('path'),
 var app = express();
 
 // 静态资源目录
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public/images')))
 // session中间件
 app.use(session({
 	name: config.session.key, // 设置 cookie 中保存 session_id 字段名称
