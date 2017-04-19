@@ -4,11 +4,14 @@ var path = require('path'),
 	express = require('express'),
 	router = express.Router();
 
-var UserModel = require('../models/user');
+var UserModel = require('../models/user'),
+	CORS = require('../middlewares/cors');
 
-router.post('/', (req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.send({a: 'mmp'});
+router.post('/', CORS, (req, res, next) => {
+	// console.log(req.fields);
+	var { name, password, repassword, gender } = req.fields,
+		avatar = req.files.avatar.path.split(path.sep).pop();
+	res.send(avatar);
 });
 
 module.exports = router;
