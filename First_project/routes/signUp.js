@@ -14,8 +14,20 @@ router.post('/', CORS, (req, res, next) => {
 
 	// 校验参数
 	try {
+		if (name.length < 1 || name.length > 10) {
+			throw new Error('名字长度超限');
+		}
+		if (['m', 'f'].indexOf(gender) === -1) {
+			throw new Error('性别无效');
+		}
 		if (!req.files.avatar.name) {
 			throw new Error('avatar lost');
+		}
+		if (password.length < 6) {
+			throw new Error('密码最少6位');
+		}
+		if (password !== repassword) {
+			throw new Error('两次密码输入不一致');
 		}
 	} catch(e) {
 		fs.unlink(req.files.avatar.path);
@@ -34,11 +46,16 @@ router.post('/', CORS, (req, res, next) => {
 
 	UserModel.create(user)
 		.then((result) => {
+			user = result.ops[0];
+			req.session.user = user;
 			res.send(result);
 		})
 		.catch((e) => {
 			fs.unlink(req.files.avatar.path);
-			res.send('Register fail');
+			if (e.errmsg.match('E11000 duplicate key')) {
+				res.send('用户名已存在');
+			}
+			next(e);
 		});
 });
 
