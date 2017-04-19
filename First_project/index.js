@@ -26,11 +26,11 @@ app.use(session({
 // 路由
 routes(app);
 
-app.listen(config.port, () => {
-	console.log(`Listening on port ${config.port}...`);
-});
-
 app.use(require('express-formidable')({
 	uploadDir: path.join(__dirname, 'public/images'),
 	keepExtensions: true
 }));
+
+app.listen(config.port, () => {
+	console.log(`Listening on port ${config.port}...`);
+});

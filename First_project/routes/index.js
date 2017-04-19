@@ -1,7 +1,8 @@
 module.exports = (app) => {
-	app.get('/', (req, res) => {
-		res.send({desc: 'Hello Route'});
-	});
+	// app.get('/', (req, res) => {
+	// 	res.send({desc: 'Hello Route'});
+	// });
 
-	app.use('/signIn', require('./signIn'));
+	// app.use('/signIn', require('./signIn'));
+	app.use('/signUp', require('./signUp'));
 };
