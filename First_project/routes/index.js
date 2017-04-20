@@ -1,5 +1,5 @@
 module.exports = (app) => {
-	// app.use('/signIn', require('./signIn'));
+	app.use('/signIn', require('./signIn'));
 	app.use('/signUp', require('./signUp'));
 
 	// 404page
