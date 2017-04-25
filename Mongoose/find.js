@@ -13,8 +13,13 @@ db.once('open', (callback) => {
 
 var kittySchema = mongoose.Schema({
 	name: String,
-	age: Number
+	age: Number,
+	arr: Array
 });
+
+kittySchema.set('autoIndex', false);
+
+kittySchema.index({name: 1});
 
 kittySchema.methods.speak = function() {
 	var name = 'My name is ' + this.name;
@@ -47,14 +52,40 @@ var kittyModel = mongoose.model('Kitten', kittySchema);
 // 	self.speak();
 // });
 
+// var hxy = new kittyModel({
+// 	name: 'hxy',
+// 	age: 16
+// });
+
+// hxy.save((err, self) => {
+// 	if (err) return console.error(err);
+// 	self.speak();
+// });
+
 kittyModel.find({name: 'datou'}, (err, self) => {
 	if (err) return console.error(err);
 	console.log(self);
 });
 
-kittyModel.findByName('xieyuxiao', function(err, target) {
-	if (err) return console.error(err);
-	console.log(target);
+// kittyModel.findByName('xieyuxiao', function(err, target) {
+// 	if (err) return console.error(err);
+// 	console.log(target);
+// });
+
+kittyModel.findOne({name: 'xieyuxiao'}, (err, user) => {
+	if (!err) {
+		console.log(user);
+	}
 });
 
+// kittyModel.findById(ObjectID); 根据ObjectId查找到唯一实例
+
+kittyModel
+	.find()
+	.where('age').gte(25)
+	.sort('age')
+	.select('_id name')
+	.exec((err, users) => {
+		console.log(users);
+	});
 // console.log(xyx);
