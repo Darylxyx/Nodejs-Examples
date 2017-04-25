@@ -21,31 +21,40 @@ kittySchema.methods.speak = function() {
 	console.log(name);
 };
 
+kittySchema.statics.findByName = function(name, callback) {
+	this.find({name: new RegExp(name, 'i')}, callback);
+};
+
 var kittyModel = mongoose.model('Kitten', kittySchema);
 
-var xyx = new kittyModel({
-	name: 'xieyuxiao',
-	age: 26
-});
+// var xyx = new kittyModel({
+// 	name: 'xieyuxiao',
+// 	age: 26
+// });
 
-var datou = new kittyModel({
-	name: 'datou',
-	age: 25
-});
+// var datou = new kittyModel({
+// 	name: 'datou',
+// 	age: 25
+// });
 
-xyx.save((err, self) => {
-	if (err) return console.error(err);
-	self.speak();
-});
+// xyx.save((err, self) => {
+// 	if (err) return console.error(err);
+// 	self.speak();
+// });
 
-datou.save((err, self) => {
-	if (err) return console.error(err);
-	self.speak();
-});
+// datou.save((err, self) => {
+// 	if (err) return console.error(err);
+// 	self.speak();
+// });
 
-kittyModel.find((err, self) => {
+kittyModel.find({name: 'datou'}, (err, self) => {
 	if (err) return console.error(err);
 	console.log(self);
 });
 
-console.log(xyx);
+kittyModel.findByName('xieyuxiao', function(err, target) {
+	if (err) return console.error(err);
+	console.log(target);
+});
+
+// console.log(xyx);
