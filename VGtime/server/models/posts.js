@@ -5,6 +5,12 @@ module.exports = {
 		return Post
 				.find()
 				.sort('-score')
+				.select('_id name score cover platform')
+				.exec();
+	},
+	findPostDetail(postId) {
+		return Post
+				.findById(postId)
 				.exec();
 	}
 }

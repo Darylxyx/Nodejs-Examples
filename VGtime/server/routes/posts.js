@@ -6,12 +6,32 @@ var	PostsModel = require('../models/posts')
 	CORS = require('../middlewares/cors'),
 
 router.get('/', CORS, (req, res) => {
-	PostsModel.findPostsList().then((doc) => {
+	PostsModel.findPostsList()
+	.then((doc) => {
 		res.send(doc);
-		// CommentsModel.findCommentsById('5900538a5b22110d6b6cc390').then((doc1) => {
-		// 	res.send(doc1);
-		// }).catch();
 	}).catch();
+});
+
+router.get('/:postId', CORS, (req, res) => {
+	let pId = req.params.postId;
+
+	PostsModel.findPostDetail(pId)
+	.then((doc) => {
+		res.send(doc);
+	}).catch((err) => {
+		res.send(doc);
+	});
+});
+
+router.get('/:postId/comments', CORS, (req, res) => {
+	let pId = req.params.postId;
+
+	CommentsModel.findCommentsById(pId)
+	.then((doc) => {
+		res.send(doc);
+	}).catch((err) => {
+		res.send(err);
+	});
 });
 
 module.exports = router;
