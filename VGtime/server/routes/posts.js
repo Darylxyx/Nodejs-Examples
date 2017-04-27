@@ -4,11 +4,10 @@ var express = require('express'),
 var	PostsModel = require('../models/posts')
 	CORS = require('../middlewares/cors'),
 
-
 router.get('/', CORS, (req, res) => {
-	PostsModel.findPostsList((doc) => {
+	PostsModel.findPostsList().then((doc) => {
 		res.send(doc);
-	});
+	}).catch();
 });
 
 module.exports = router;
