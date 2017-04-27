@@ -1,8 +1,8 @@
-var Posts = require('../lib/mongo').Posts
+var Post = require('../lib/mongo').Post
 
 module.exports = {
 	findPostsList(cb) {
-		return Posts
+		return Post
 				.find()
 				.sort('-score')
 				.exec();

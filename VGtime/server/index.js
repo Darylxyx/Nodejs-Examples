@@ -26,6 +26,12 @@ app.use(session({
 	})
 }));
 
+// 处理表单上传
+app.use(require('express-formidable')({
+	uploadDir: path.join(__dirname, 'public/images'), // 上传文件目录
+	keepExtensions: true
+}));
+
 // 正常请求日志
 app.use(expressWinston.logger({
 	transports: [
