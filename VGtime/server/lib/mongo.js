@@ -4,14 +4,21 @@ var config = require('config-lite')(__dirname),
 mongoose.connect(config.mongodb);
 
 var bioLength = (val) => {
-	if (val && val.length <= 20) {
+	if (val.length <= 20) {
+		return true;
+	}
+	return false;
+};
+
+var commentLength = (val) => {
+	if (val.length <= 50) {
 		return true;
 	}
 	return false;
 };
 
 exports.User = mongoose.model('User', {
-	name: String,
+	name: {type: String, unique: true },
 	password: String,
 	avatar: String,
 	geneder: { type: String, enum: ['m', 'f']},
@@ -30,5 +37,6 @@ exports.Post = mongoose.model('Post', {
 exports.Comment = mongoose.model('Comment', {
 	author: mongoose.Schema.Types.ObjectId,
 	content: String,
-	postId: mongoose.Schema.Types.ObjectId
+	postId: mongoose.Schema.Types.ObjectId,
+	time: String
 });

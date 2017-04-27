@@ -1,4 +1,4 @@
-var Post = require('../lib/mongo').Post
+var Post = require('../lib/mongo').Post;
 
 module.exports = {
 	findPostsList(cb) {
