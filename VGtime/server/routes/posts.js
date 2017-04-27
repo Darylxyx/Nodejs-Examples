@@ -12,6 +12,15 @@ router.get('/', CORS, (req, res) => {
 	}).catch();
 });
 
+router.get('/delcomment', CORS, (req, res) => {
+	let pId = req.params.postId,
+		cId = req.query.commentId;
+
+	CommentsModel.deleteComment(cId, (result) => {
+		res.send(result);
+	});
+});
+
 router.get('/:postId', CORS, (req, res) => {
 	let pId = req.params.postId;
 
@@ -19,7 +28,7 @@ router.get('/:postId', CORS, (req, res) => {
 	.then((doc) => {
 		res.send(doc);
 	}).catch((err) => {
-		res.send(doc);
+		res.send(err);
 	});
 });
 
@@ -32,6 +41,15 @@ router.get('/:postId/comments', CORS, (req, res) => {
 	}).catch((err) => {
 		res.send(err);
 	});
+});
+
+router.post('/:postId/comment', CORS, (req, res) => {
+	let pId = req.params.postId,
+		content = req.query.content;
+
+	CommentsModel.createComment(pId, content, (result) => {
+		res.send(result);
+	})
 });
 
 module.exports = router;

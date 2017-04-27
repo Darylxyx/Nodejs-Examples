@@ -27,6 +27,7 @@ exports.User = mongoose.model('User', {
 
 exports.Post = mongoose.model('Post', {
 	author: String,
+	author_avatar: String,
 	name: String,
 	cover: String,
 	platform: { type: Array, enum: ['PS4', 'PS3', 'PSV', 'XBONE', 'XB360', '3DS', 'Wii', 'NSwitch']},

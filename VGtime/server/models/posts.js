@@ -11,6 +11,7 @@ module.exports = {
 	findPostDetail(postId) {
 		return Post
 				.findById(postId)
+				.select('_id name score cover platform content author author_avatar')
 				.exec();
 	}
 }
