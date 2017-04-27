@@ -32,13 +32,13 @@ exports.Post = mongoose.model('Post', {
 	cover: String,
 	platform: { type: Array, enum: ['PS4', 'PS3', 'PSV', 'XBONE', 'XB360', '3DS', 'Wii', 'NSwitch']},
 	content: String,
-	score: Number,
-	time: String
+	score: { type: Number, index: -1 }
+	creat_time: Date
 });
 
 exports.Comment = mongoose.model('Comment', {
 	author: mongoose.Schema.Types.ObjectId,
 	content: String,
 	postId: mongoose.Schema.Types.ObjectId,
-	time: String
+	create_time: { type: Date, index: -1 }
 });
