@@ -4,9 +4,9 @@ module.exports = {
 	createUser(user) {
 		return User.create(user);
 	},
-	getUserById(userId) {
+	getUserByName(name) {
 		return User
-				.findById(userId)
+				.find({name: name})
 				.exec();
 	}
 };

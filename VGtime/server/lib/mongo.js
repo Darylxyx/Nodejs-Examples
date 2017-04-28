@@ -19,10 +19,10 @@ var commentLength = (val) => {
 };
 
 exports.User = mongoose.model('User', {
-	name: {type: String, unique: true },
-	password: String,
+	name: { type: String, unique: true, required: true },
+	password: { type: String, require: true },
 	avatar: String,
-	geneder: { type: String, enum: ['m', 'f']},
+	geneder: { type: String, enum: ['m', 'f'] },
 	bio: { type: String, validate: bioLength }
 });
 
@@ -39,7 +39,7 @@ exports.Post = mongoose.model('Post', {
 
 exports.Comment = mongoose.model('Comment', {
 	authorId: mongoose.Schema.Types.ObjectId,
-	content: {type: String, required: true },
+	content: { type: String, required: true },
 	postId: mongoose.Schema.Types.ObjectId,
 	create_time: { type: Date, index: -1, required: true }
 });
