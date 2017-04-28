@@ -3,16 +3,61 @@ var express = require('express'),
 
 var	PostsModel = require('../models/posts')
 	CommentsModel = require('../models/comments'),
-	CORS = require('../middlewares/cors'),
+	CORS = require('../middlewares/cors');
 
 router.get('/', CORS, (req, res) => {
 	PostsModel.findPostsList()
 	.then((doc) => {
-		res.send(doc);
-	}).catch();
+		sendResponse(res, 200, doc);
+	}).catch((err) => {
+		sendResponse(res, 400, err);
+	});
 });
 
-router.get('/delcomment', CORS, (req, res) => {
+router.get('/postDetail', CORS, (req, res) => {
+	let pId = req.query.postId;
+
+	if (!pId) return sendResponse(res, 400, {errMsg: 'PostId is required.'});
+
+	PostsModel.findPostDetail(pId)
+	.then((doc) => {
+		sendResponse(res, 200, doc);
+	}).catch((err) => {
+		sendResponse(res, 400, err);
+	});
+});
+
+router.get('/comments', CORS, (req, res) => {
+	let pId = req.query.postId;
+
+	if (!pId) return sendResponse(res, 400, {errMsg: 'PostId is required.'});
+
+	CommentsModel.findCommentsById(pId)
+	.then((doc) => {
+		sendResponse(res, 200, doc);
+	}).catch((err) => {
+		sendResponse(res, 400, err);
+	});
+});
+
+router.post('/addComment', CORS, (req, res) => {
+	let pId = req.query.postId,
+		content = req.query.content;
+
+	if (!pId) return sendResponse(res, 400, {errMsg: 'PostId is required.'});
+
+	let data = {
+		author: '590053ba955d740d6c4044b2',
+		content: content,
+		postId: pId
+	}
+
+	CommentsModel.createComment(data, (result) => {
+		res.send(result);
+	})
+});
+
+router.get('/delComment', CORS, (req, res) => {
 	let pId = req.params.postId,
 		cId = req.query.commentId;
 
@@ -21,35 +66,12 @@ router.get('/delcomment', CORS, (req, res) => {
 	});
 });
 
-router.get('/:postId', CORS, (req, res) => {
-	let pId = req.params.postId;
-
-	PostsModel.findPostDetail(pId)
-	.then((doc) => {
-		res.send(doc);
-	}).catch((err) => {
-		res.send(err);
-	});
-});
-
-router.get('/:postId/comments', CORS, (req, res) => {
-	let pId = req.params.postId;
-
-	CommentsModel.findCommentsById(pId)
-	.then((doc) => {
-		res.send(doc);
-	}).catch((err) => {
-		res.send(err);
-	});
-});
-
-router.post('/:postId/comment', CORS, (req, res) => {
-	let pId = req.params.postId,
-		content = req.query.content;
-
-	CommentsModel.createComment(pId, content, (result) => {
-		res.send(result);
-	})
-});
+function sendResponse(res, statusCode, doc) {
+	var resJSON = {
+		statusCode: statusCode,
+		result: doc
+	};
+	res.send(resJSON);
+}
 
 module.exports = router;

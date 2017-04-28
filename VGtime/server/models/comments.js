@@ -6,13 +6,9 @@ module.exports = {
 				.find({postId: postId})
 				.exec();
 	},
-	createComment(postId, content, cb) {
+	createComment(data, cb) {
 		Comment
-			.create({
-				author: '590053ba955d740d6c4044b2',
-				content: content,
-				postId: '590053ba955d740d6c4044b2'
-			}, (err, doc) => {
+			.create(data, (err, doc) => {
 				if (err) cb && cb(err);
 				else cb && cb(doc);
 			});

@@ -32,7 +32,7 @@ exports.Post = mongoose.model('Post', {
 	cover: String,
 	platform: { type: Array, enum: ['PS4', 'PS3', 'PSV', 'XBONE', 'XB360', '3DS', 'Wii', 'NSwitch']},
 	content: String,
-	score: { type: Number, index: -1 }
+	score: { type: Number, index: -1 },
 	creat_time: Date
 });
 
