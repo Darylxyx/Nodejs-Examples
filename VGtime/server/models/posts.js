@@ -14,4 +14,4 @@ module.exports = {
 				.select('_id name score cover platform content author author_avatar')
 				.exec();
 	}
-}
+};

@@ -47,7 +47,7 @@ router.post('/addComment', CORS, (req, res) => {
 	if (!pId) return sendResponse(res, 400, {errMsg: 'PostId is required.'});
 
 	let data = {
-		author: '590053ba955d740d6c4044b2',
+		authorId: '590053ba955d740d6c4044b2',
 		content: content,
 		postId: pId
 	};

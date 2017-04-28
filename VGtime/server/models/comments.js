@@ -6,10 +6,10 @@ module.exports = {
 				.find({postId: postId})
 				.exec();
 	},
-	createComment(data, cb) {
+	createComment(data) {
 		return Comment.create(data);
 	},
-	deleteComment(commentId, cb) {
+	deleteComment(commentId) {
 		return Comment.findByIdAndRemove(commentId).exec();
 	}
-}
+};

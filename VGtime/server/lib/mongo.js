@@ -38,8 +38,8 @@ exports.Post = mongoose.model('Post', {
 });
 
 exports.Comment = mongoose.model('Comment', {
-	author: mongoose.Schema.Types.ObjectId,
+	authorId: mongoose.Schema.Types.ObjectId,
 	content: {type: String, required: true },
 	postId: mongoose.Schema.Types.ObjectId,
-	create_time: { type: Date, index: -1 }
+	create_time: { type: Date, index: -1, required: true }
 });
