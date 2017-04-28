@@ -1,5 +1,6 @@
 var config = require('config-lite')(__dirname),
 	mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 mongoose.connect(config.mongodb);
 
@@ -38,7 +39,7 @@ exports.Post = mongoose.model('Post', {
 
 exports.Comment = mongoose.model('Comment', {
 	author: mongoose.Schema.Types.ObjectId,
-	content: String,
+	content: {type: String, required: true },
 	postId: mongoose.Schema.Types.ObjectId,
 	create_time: { type: Date, index: -1 }
 });

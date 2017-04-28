@@ -50,19 +50,26 @@ router.post('/addComment', CORS, (req, res) => {
 		author: '590053ba955d740d6c4044b2',
 		content: content,
 		postId: pId
-	}
+	};
 
-	CommentsModel.createComment(data, (result) => {
-		res.send(result);
-	})
+	CommentsModel.createComment(data)
+	.then((doc) => {
+		sendResponse(res, 200, {msg: 'Comment saved successfully.'});
+	}).catch((err) => {
+		sendResponse(res, 400, err);
+	});
 });
 
-router.get('/delComment', CORS, (req, res) => {
-	let pId = req.params.postId,
-		cId = req.query.commentId;
+router.post('/delComment', CORS, (req, res) => {
+	let cId = req.query.commentId;
 
-	CommentsModel.deleteComment(cId, (result) => {
-		res.send(result);
+	if (!cId) return sendResponse(res, 400, {errMsg: 'CommentId is required.'});	
+
+	CommentsModel.deleteComment(cId)
+	.then((doc) => {
+		sendResponse(res, 200, {msg: 'Comment deleted successfully.'});
+	}).catch((err) => {
+		sendResponse(res, 400, err);
 	});
 });
 
