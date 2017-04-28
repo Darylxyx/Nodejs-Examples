@@ -1,5 +1,6 @@
 var express = require('express'),
-	router = express.Router();
+	router = express.Router(),
+	sha1 = require('sha1');
 
 var UserModel = require('../models/user'),
 	CORS = require('../middlewares/cors');

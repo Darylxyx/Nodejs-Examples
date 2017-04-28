@@ -19,7 +19,7 @@ var commentLength = (val) => {
 };
 
 exports.User = mongoose.model('User', {
-	name: { type: String, unique: true, required: true },
+	name: { type: String, unique: true, required: true, index: 1 },
 	password: { type: String, require: true },
 	avatar: String,
 	geneder: { type: String, enum: ['m', 'f'] },
