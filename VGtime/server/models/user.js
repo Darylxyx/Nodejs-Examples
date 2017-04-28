@@ -6,7 +6,7 @@ module.exports = {
 	},
 	getUserByName(name) {
 		return User
-				.find({name: name})
+				.findOne({name: name})
 				.exec();
 	}
 };

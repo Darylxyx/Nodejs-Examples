@@ -8,7 +8,7 @@ router.get('/', CORS, (req, res, next) => {
 	// res.send('Hello Signin');
 	let { userName, passWord } = req.query;
 
-	if (!userName && !passWord) return sendResponse(res, 400, {errMsg: '请将用户名和密码填写完整'});
+	if (!userName || !passWord) return sendResponse(res, 400, {errMsg: '请将用户名和密码填写完整'});
 
 	UserModel.getUserByName(userName)
 	.then((user) => {
