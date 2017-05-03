@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset='utf-8'/>
 	<title>表单提交测试</title>
 </head>
 <body>
-	<form>
+	<form method='post' action='http://localhost:3000/signUp' enctype="multipart/form-data">
 		姓名：<input name='name' type='text' />
-		密码：<input type='password' />
+		密码：<input name='password' type='password' />
+		重复密码：<input name='repassword' type='password' />
+		性别：<input name='gender' type='radio' value='m' />男
+		<input name='gender' type='radio' value='f' />女
+		简介：<input name='bio' type='text' />
+		上传头像：<input name='avatar' type='file' />
 	</form>
 </body>
 </html>

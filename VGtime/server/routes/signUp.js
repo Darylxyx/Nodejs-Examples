@@ -9,6 +9,7 @@ router.post('/', CORS, (req, res) => {
 	let { name, password, repassword, gender, bio } = req.query,
 		avatar = req.files.avatar.path.split(path.sep).pop();
 	
+	console.log(avatar);
 	// 检验参数
 	try {
 		if (name.length < 1 || name.length > 10) {
