@@ -42,12 +42,13 @@ router.get('/comments', CORS, (req, res) => {
 
 router.post('/addComment', CORS, (req, res) => {
 	let pId = req.query.postId,
-		content = req.query.content;
+		content = req.query.content,
+		authorId = req.query.authorId; 
 
 	if (!pId) return global.sendResponse(res, 400, {errMsg: 'PostId is required.'});
 
 	let data = {
-		authorId: '590053ba955d740d6c4044b2',
+		authorId: authorId,
 		content: content,
 		postId: pId
 	};

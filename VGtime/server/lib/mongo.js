@@ -4,13 +4,6 @@ mongoose.Promise = require('bluebird');
 
 mongoose.connect(config.mongodb);
 
-var bioLength = (val) => {
-	if (val.length <= 20) {
-		return true;
-	}
-	return false;
-};
-
 var commentLength = (val) => {
 	if (val.length <= 50) {
 		return true;
@@ -23,7 +16,7 @@ exports.User = mongoose.model('User', {
 	password: { type: String, require: true },
 	avatar: String,
 	geneder: { type: String, enum: ['m', 'f'] },
-	bio: { type: String, validate: bioLength }
+	bio: String
 });
 
 exports.Post = mongoose.model('Post', {
