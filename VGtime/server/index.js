@@ -7,6 +7,8 @@ var path = require('path'),
 	winston = require('winston'),
 	expressWinston = require('express-winston');
 
+require('./middlewares/global');
+
 var app = express();
 
 // 静态资源目录
