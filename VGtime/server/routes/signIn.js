@@ -17,12 +17,13 @@ router.get('/', CORS, (req, res, next) => {
 			return global.sendResponse(res, 400, {errMsg: '用户名不存在。'});
 		}
 
-		if (sha1(passWord) !== user.password) {
+		if (passWord !== user.password) {
 			return global.sendResponse(res, 400, {errMsg: '用户名或密码错误'});
 		}
 
+		delete user.password;
 		req.session.user = user;
-		global.sendResponse(res, 200, {msg: 'Signin successfully.'});
+		global.sendResponse(res, 200, user);
 
 	}).catch((err) => {
 		global.sendResponse(res, 400, err);
