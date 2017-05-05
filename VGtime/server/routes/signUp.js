@@ -51,11 +51,16 @@ router.post('/', CORS, (req, res) => {
 
 	UserModel.createUser(user)
 	.then((result) => {
-		user = result;
-		delete user.password;
-		req.session.user = user;
 
-		global.sendResponse(res, 200, {msg: '注册成功'});
+		let ur = {
+			uId: result._id,
+			userName: result.name,
+			geneder: result.geneder
+		};
+
+		req.session.user = ur;
+
+		global.sendResponse(res, 200, ur);
 	}).catch((err) => {
 		fs.unlink(avatarPath);
 		global.sendResponse(res, 400, {errMsg: err});

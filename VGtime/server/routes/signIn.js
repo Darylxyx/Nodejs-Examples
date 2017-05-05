@@ -21,9 +21,14 @@ router.get('/', CORS, (req, res, next) => {
 			return global.sendResponse(res, 400, {errMsg: '用户名或密码错误'});
 		}
 
-		delete user.password;
-		req.session.user = user;
-		global.sendResponse(res, 200, user);
+		let ur = {
+			uId: user._id,
+			userName: user.name,
+			geneder: user.geneder
+		};
+		
+		req.session.user = ur;
+		global.sendResponse(res, 200, ur);
 
 	}).catch((err) => {
 		global.sendResponse(res, 400, err);
