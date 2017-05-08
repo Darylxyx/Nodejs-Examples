@@ -1,0 +1,22 @@
+<!Doctype HTML>
+<html>
+<head>
+	<meta charset='utf-8' />
+</head>
+<body>
+<input id='text' type='text' />
+<button onclick='sendMsg()'>send</button>
+<script>
+	var ws = new WebSocket('ws://localhost:8181');
+	ws.onopen = function(e) {
+		console.log('Connection to server opened');
+	};
+
+	function sendMsg() {
+		var oInput = document.querySelector('#text');
+		ws.send(oInput.value);
+	}
+
+</script>
+</body>
+</html>
