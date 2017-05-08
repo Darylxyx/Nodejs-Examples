@@ -5,15 +5,21 @@
 </head>
 <body>
 <input id='text' type='text' />
-<button onclick='sendMsg()'>send</button>
+<button type='button' onclick='sendMsg()'>send</button>
 <script>
 	var ws = new WebSocket('ws://localhost:8181');
+	
 	ws.onopen = function(e) {
 		console.log('Connection to server opened');
 	};
 
+	ws.onmessage = function(e) {
+		console.log(e.data);
+	};
+
 	function sendMsg() {
 		var oInput = document.querySelector('#text');
+		console.log(oInput.value);
 		ws.send(oInput.value);
 	}
 
