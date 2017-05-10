@@ -1,12 +1,12 @@
 var app = require('express')(),
-	http = require('http').Server(app),
-	io = require('socket.io')(http);
+	server = require('http').createServer(app),
+	io = require('socket.io')(server);
 
 app.get('/', (req, res) => {
 	res.send('<h1>Hello Socket.IO</h1>');
 });
 
-http.listen(8888, () => {
+server.listen(8888, () => {
 	console.log('listening on 8888...');
 });
 
