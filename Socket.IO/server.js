@@ -3,17 +3,22 @@ var app = require('express')(),
 	io = require('socket.io')(server);
 
 app.get('/', (req, res) => {
-	res.send('<h1>Hello Socket.IO</h1>');
+	res.sendFile(__dirname + '/client.html');
+});
+
+io.on('connection', (socket) => {
+	console.log('a user connected.');
+
+	socket.on('client message', (data) => {
+		console.log(data);
+		io.emit('server message', data);
+	});
+
+	socket.on('disconnect', () => {
+		console.log('user disconnected');
+	});
 });
 
 server.listen(8888, () => {
 	console.log('listening on 8888...');
-});
-
-io.on('connection', (socket) => {
-	socket.on('client-msg', (obj) => {
-		console.log(obj);
-	});
-
-	socket.emit('server-msg', 'Hello Client');
 });

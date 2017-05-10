@@ -1,25 +1,34 @@
 <!Doctype HTML>
 <html>
 <head>
-	<meta charset='utf-8' />
-	<script src='./node_modules/socket.io-client/dist/socket.io.js'></script>
+	<meta http-equiv="pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control " content="no-cache,must-revalidate"> 
+    <meta name="description" content="">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<title>Socket.IO chat</title>
+	<script src='/socket.io/socket.io.js'></script>
 </head>
 <body>
 <input id='text' type='text' />
+<br/>
 <button type='button' onclick='sendMsg()'>send</button>
 <script>
-var socket = io.connect('localhost:8888');
 
-function sendMsg() {
-	socket.emit('client-msg', {
-		title: 'Hello Server',
-		text: document.querySelector('#text').value
+	var socket = io();
+
+	function sendMsg() {
+		var message = document.querySelector('#text').value;
+
+		socket.emit('client message', {
+			text: message,
+			time: new Date()
+		});
+	}
+
+	socket.on('server message', (data) => {
+		console.log('recevie meesage: ' + JSON.stringify(data));
 	});
-}
-
-socket.on('server-msg', (msg) => {
-	console.log(msg);
-});
 </script>
 </body>
 </html>
