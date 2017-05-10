@@ -1,0 +1,26 @@
+<!Doctype HTML>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<script src='./node_modules/socket.io-client/dist/socket.io.js'></script>
+</head>
+<body>
+<input id='text' type='text' />
+<button type='button' onclick='sendMsg()'>send</button>
+<script>
+var socket = io.connect('localhost:8888');
+
+function sendMsg() {
+	socket.emit('client-msg', {
+		title: 'Hello Server',
+		text: document.querySelector('#text').value
+	});
+}
+
+socket.on('server-msg', (msg) => {
+	console.log(msg);
+});
+
+</script>
+</body>
+</html>
