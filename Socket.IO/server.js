@@ -4,17 +4,24 @@ var app = require('express')(),
 
 // console.log(io);
 
-io.origins('https://www.baidu.com', (error, success) => {
-	console.log(success);
-	console.log('WTF');
-});
-
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/client.html');
 });
 
+io.use((socket, next) => {
+	// console.log(socket);
+	console.log('id: ' + socket.id);
+	console.log('room: ' + socket.room);
+	console.log()
+	next();
+});
+
 io.on('connection', (socket) => {
 	console.log('a user connected.');
+
+	io.clients((err, clients) => {
+		if (!err) console.log(clients);
+	});
 
 	socket.on('client message', (data) => {
 		console.log(data);
