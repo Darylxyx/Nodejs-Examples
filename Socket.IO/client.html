@@ -29,6 +29,10 @@
 	socket.on('server message', (data) => {
 		console.log('recevie meesage: ' + JSON.stringify(data));
 	});
+
+	socket.on('disconnect', (data) => {
+		console.log('server disconnect: ' + JSON.stringify(data));
+	});
 </script>
 </body>
 </html>

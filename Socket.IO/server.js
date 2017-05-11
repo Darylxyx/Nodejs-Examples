@@ -2,6 +2,13 @@ var app = require('express')(),
 	server = require('http').createServer(app),
 	io = require('socket.io')(server);
 
+// console.log(io);
+
+io.origins('https://www.baidu.com', (error, success) => {
+	console.log(success);
+	console.log('WTF');
+});
+
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/client.html');
 });
