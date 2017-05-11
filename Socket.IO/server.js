@@ -8,24 +8,22 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/client.html');
 });
 
-io.use((socket, next) => {
-	// console.log(socket);
-	console.log('id: ' + socket.id);
-	console.log('room: ' + socket.room);
-	console.log()
-	next();
-});
+// io.use((socket, next) => {
+// 	// console.log(socket);
+// 	next();
+// });
 
 io.on('connection', (socket) => {
-	console.log('a user connected.');
+	console.log('a user connected，id: ' + socket.id);
 
-	io.clients((err, clients) => {
-		if (!err) console.log(clients);
-	});
+	// io.clients((err, clients) => {
+	// 	if (!err) console.log(clients);
+	// });
 
 	socket.on('client message', (data) => {
-		console.log(data);
-		io.emit('server message', data);
+		// console.log(data);
+		data.author = socket.id;
+		socket.broadcast.emit('server message', data);
 	});
 
 	socket.on('disconnect', () => {
