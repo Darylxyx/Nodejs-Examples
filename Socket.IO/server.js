@@ -1,12 +1,16 @@
-var app = require('express')(),
+var express = require('express'),
+	app = express(),
 	server = require('http').createServer(app),
-	io = require('socket.io')(server);
+	io = require('socket.io')(server),
+	path = require('path');
 
 // console.log(io);
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/client.html');
-});
+app.use(express.static(path.join(__dirname, '/cilent')));
+
+// app.get('/', (req, res) => {
+// 	res.sendFile(path.join(__dirname, '/client/index.html'));
+// });
 
 // io.use((socket, next) => {
 // 	// console.log(socket);
