@@ -6,10 +6,6 @@ var express = require('express'),
 
 app.use(express.static(__dirname + '/client'));
 
-// app.get('/', (req, res) => {
-// 	res.sendFile(__dirname + '/client/index.html');
-// });
-
 // io.use((socket, next) => {
 // 	// console.log(socket);
 // 	next();

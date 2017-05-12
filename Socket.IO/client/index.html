@@ -12,32 +12,19 @@
 </head>
 <body>
 <div class="container">
-	<div class="content"></div>
+	<div class="content">
+		<div class="overflow">
+			<div class="section">123123123123123123123123123123</div>
+		</div>
+		<div class="overflow">
+			<div class="section">12312312312323</div>
+		</div>
+	</div>
 	<div class="control">
 		<input id='input' type='text' />
-		<div class="send-btn" onclick="sendMsg()">Send</div>
+		<div class="send-btn">Send</div>
 	</div>
 </div>
-<script>
-
-	var socket = io();
-
-	function sendMsg() {
-		var message = document.querySelector('#input').value;
-
-		socket.emit('client message', {
-			text: message,
-			time: new Date()
-		});
-	}
-
-	socket.on('server message', (data) => {
-		console.log('recevie meesage: ' + JSON.stringify(data));
-	});
-
-	socket.on('disconnect', (data) => {
-		console.log('server disconnect: ' + JSON.stringify(data));
-	});
-</script>
+<script src="./index.js"></script>
 </body>
 </html>
