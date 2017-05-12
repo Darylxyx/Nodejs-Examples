@@ -6,11 +6,6 @@ var express = require('express'),
 
 app.use(express.static(__dirname + '/client'));
 
-// io.use((socket, next) => {
-// 	// console.log(socket);
-// 	next();
-// });
-
 io.on('connection', (socket) => {
 	console.log('a user connected，id: ' + socket.id);
 
@@ -18,8 +13,9 @@ io.on('connection', (socket) => {
 	// 	if (!err) console.log(clients);
 	// });
 
-	socket.on('client message', (data) => {
+	socket.on('client message', (data, cb) => {
 		// console.log(data);
+		cb('recieved');
 		data.author = socket.id;
 		socket.broadcast.emit('server message', data);
 	});

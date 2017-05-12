@@ -7,13 +7,16 @@ var doc = document,
 $sendBtn.onclick = function() {
 	var message = $input.value;
 
+	if (!message) return;
+
 	socket.emit('client message', {
 		text: message,
 		time: new Date()
+	}, function(a) {
+		//发送成功
 	});
 
 	$content.innerHTML += '<div class="list"><div class="section section-self">'+message+'</div></div>';
-
 	$input.value = '';
 }
 
