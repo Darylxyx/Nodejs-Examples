@@ -2,14 +2,12 @@ var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
 	io = require('socket.io')(server),
-	path = require('path');
+	port = process.env.PORT || 8000;
 
-// console.log(io);
-
-app.use(express.static(path.join(__dirname, '/cilent')));
+app.use(express.static(__dirname + '/client'));
 
 // app.get('/', (req, res) => {
-// 	res.sendFile(path.join(__dirname, '/client/index.html'));
+// 	res.sendFile(__dirname + '/client/index.html');
 // });
 
 // io.use((socket, next) => {
@@ -35,6 +33,6 @@ io.on('connection', (socket) => {
 	});
 });
 
-server.listen(8888, () => {
-	console.log('listening on 8888...');
+server.listen(port, () => {
+	console.log('listening on %d...', port);
 });
