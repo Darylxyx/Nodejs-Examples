@@ -42,6 +42,7 @@ html, body {
 .section-self {
 	float: right;
 	background-color: green;
+	color: #fff;
 }
 
 .control {
@@ -76,7 +77,11 @@ html, body {
 	border-radius: 6px;
 }
 
-.overflow {
+.list {
 	overflow: hidden;
-	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.list:first-child {
+	margin-top: 0;
 }
