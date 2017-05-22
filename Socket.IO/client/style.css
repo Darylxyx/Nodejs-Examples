@@ -25,7 +25,10 @@ html, body {
 	bottom: 60px;
 	padding: 20px;
 	overflow-y: auto;
-	background-color: brown;
+	background-image: url(./images/chat-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .section {

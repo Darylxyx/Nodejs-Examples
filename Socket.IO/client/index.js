@@ -20,6 +20,8 @@ $sendBtn.onclick = function() {
 	$input.value = '';
 }
 
+socket.on()
+
 socket.on('server message', (data) => {
 	console.log('recevie meesage: ' + JSON.stringify(data));
 	$content.innerHTML += '<div class="list"><div class="section">'+data.text+'</div></div>';

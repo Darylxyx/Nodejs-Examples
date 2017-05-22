@@ -12,11 +12,17 @@ io.on('connection', (socket) => {
 	// io.clients((err, clients) => {
 	// 	if (!err) console.log(clients);
 	// });
+	
+	socket.on('user conncet', (data) => {
+
+	});
 
 	socket.on('client message', (data, cb) => {
 		// console.log(data);
 		cb('recieved');
 		data.author = socket.id;
+
+		//广播给除了自己以外的客户端
 		socket.broadcast.emit('server message', data);
 	});
 
