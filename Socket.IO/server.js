@@ -7,9 +7,12 @@ var express = require('express'),
 app.use(express.static(__dirname + '/client'));
 
 io.on('connection', (socket) => {
-	console.log('a user connected，id: ' + socket.id);
+	// console.log('a user connected，id: ' + socket.id);
+	
+	//通知用户进入
 	io.local.emit('user conncet', '匿名用户'+socket.id.toString().substring(0,6));
 
+	//向客户端发送消息
 	socket.on('client message', (data, cb) => {
 		// console.log(data);
 		cb('recieved');
@@ -19,8 +22,9 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('server message', data);
 	});
 
+	//通知用户离开
 	socket.on('disconnect', () => {
-		console.log('user disconnected');
+		// console.log('user disconnected');
 		io.local.emit('user disconnect', '用户'+socket.id.toString().substring(0,6)+'离开聊天室');
 	});
 

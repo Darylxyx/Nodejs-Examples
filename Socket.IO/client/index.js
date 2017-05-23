@@ -16,7 +16,7 @@ socket.on('user disconnect', (data) => {
 
 //接收消息
 socket.on('server message', (data) => {
-	console.log('recevie meesage: ' + JSON.stringify(data));
+	// console.log('recevie meesage: ' + JSON.stringify(data));
 	a.$content.innerHTML += '<div class="list"><div class="section">'+data.text+'</div></div>';
 	a.scroll();
 });

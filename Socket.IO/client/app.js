@@ -6,6 +6,7 @@ function App() {
 	this.socket = io();
 }
 
+//发送消息
 App.prototype.sendMsg = function() {
 
 	var message = this.strEscape(this.$input.value);
@@ -23,6 +24,7 @@ App.prototype.sendMsg = function() {
 	this.$input.value = '';
 };
 
+//输入内容转义
 App.prototype.strEscape = function(str) {
 	var div = document.createElement('div');
 
@@ -34,6 +36,7 @@ App.prototype.strEscape = function(str) {
 	return div.innerHTML;
 };
 
+//滚动到底部
 App.prototype.scroll = function() {
 	this.$content.scrollTop = this.$content.scrollHeight;
 };
