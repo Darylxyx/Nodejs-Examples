@@ -8,10 +8,8 @@ app.use(express.static(__dirname + '/client'));
 
 io.on('connection', (socket) => {
 	console.log('a user connected，id: ' + socket.id);
-	io.local.emit('user conncet', '匿名用户'+socket.id.toString().substring(0,6)+'进入聊天室');
-	// io.clients((err, clients) => {
-	// 	if (!err) console.log(clients);
-	// });
+	io.local.emit('user conncet', '用户'+socket.id.toString().substring(0,6)+'进入聊天室');
+
 
 	socket.on('client message', (data, cb) => {
 		// console.log(data);
@@ -24,7 +22,12 @@ io.on('connection', (socket) => {
 
 	socket.on('disconnect', () => {
 		console.log('user disconnected');
+		io.local.emit('user disconnect', '用户'+socket.id.toString().substring(0,6)+'离开聊天室');
 	});
+
+	// io.clients((err, clients) => {
+	// 	if (!err) console.log(clients);
+	// });
 });
 
 server.listen(port, () => {

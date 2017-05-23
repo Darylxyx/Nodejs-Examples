@@ -24,6 +24,10 @@ socket.on('user conncet', (data) => {
 	console.log(data);
 });
 
+socket.on('user disconnect', (data) => {
+	console.log(data);
+});
+
 socket.on('server message', (data) => {
 	console.log('recevie meesage: ' + JSON.stringify(data));
 	$content.innerHTML += '<div class="list"><div class="section">'+data.text+'</div></div>';
