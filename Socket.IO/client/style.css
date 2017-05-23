@@ -9,6 +9,10 @@ html, body {
 	position: relative;
 }
 
+.text-center {
+	text-align: center;
+}
+
 .container {
 	width: 100%;
 	height: 100%;
@@ -90,6 +94,14 @@ html, body {
 	margin-top: 0;
 }
 
-.text-center {
-	text-align: center;
+.info {
+	display: inline-block;
+	max-width: 50%;
+	color: #f7f7f7;
+	line-height: 1.3;
+	font-size: 12px;
+	padding: 3px 10px;
+	border-radius: 4px;
+	background-color: rgba(0,0,0,0.2);
+	word-wrap: break-word;
 }

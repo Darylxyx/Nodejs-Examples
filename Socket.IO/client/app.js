@@ -34,4 +34,8 @@ App.prototype.strEscape = function(str) {
 	return div.innerHTML;
 };
 
+App.prototype.scroll = function() {
+	this.$content.scrollTop = this.$content.scrollHeight;
+};
+
 window.a = new App();

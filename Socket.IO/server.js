@@ -8,8 +8,7 @@ app.use(express.static(__dirname + '/client'));
 
 io.on('connection', (socket) => {
 	console.log('a user connected，id: ' + socket.id);
-	io.local.emit('user conncet', '用户'+socket.id.toString().substring(0,6)+'进入聊天室');
-
+	io.local.emit('user conncet', '匿名用户'+socket.id.toString().substring(0,6));
 
 	socket.on('client message', (data, cb) => {
 		// console.log(data);
