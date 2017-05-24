@@ -8,15 +8,17 @@ app.use(express.static(__dirname + '/client'));
 
 io.on('connection', (socket) => {
 	// console.log('a user connected，id: ' + socket.id);
+
+	let user = '游客' + socket.id.substring(0, 6);
 	
 	//通知用户进入
-	io.local.emit('user conncet', '匿名用户'+socket.id.toString().substring(0,6));
+	io.local.emit('user conncet', user + '进入聊天室');
 
 	//向客户端发送消息
 	socket.on('client message', (data, cb) => {
 		// console.log(data);
 		cb('recieved');
-		data.author = socket.id;
+		data.author = user;
 
 		//广播给除自己以外的客户端
 		socket.broadcast.emit('server message', data);
@@ -25,7 +27,7 @@ io.on('connection', (socket) => {
 	//通知用户离开
 	socket.on('disconnect', () => {
 		// console.log('user disconnected');
-		io.local.emit('user disconnect', '用户'+socket.id.toString().substring(0,6)+'离开聊天室');
+		io.local.emit('user disconnect', user + '离开聊天室');
 	});
 
 	// io.clients((err, clients) => {

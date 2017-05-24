@@ -19,7 +19,10 @@ App.prototype.sendMsg = function() {
 		//发送成功
 	});
 
-	this.$content.innerHTML += '<div class="list"><div class="section section-self">'+message+'</div></div>';
+	this.$content.innerHTML += '<div class="list">\
+									<p class="user-name text-right">'+ data.author +'</p>\
+									<div class="section section-self">'+ message +'</div>\
+								</div>';
 	this.$content.scrollTop = this.$content.scrollHeight;
 	this.$input.value = '';
 };
