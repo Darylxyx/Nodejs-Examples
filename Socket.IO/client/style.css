@@ -1,4 +1,4 @@
-html, body, div, input {
+html, body, div, input, p {
 	margin: 0;
 	padding: 0;
 }
@@ -53,10 +53,10 @@ html, body {
 	position: absolute;
 	width: 0;
 	height: 0;
-	border: 6px solid transparent;
+	border: 8px solid transparent;
 	border-right-color: #fff;
-	left: -11px;
-	top: 7px;
+	left: -13px;
+	top: 6px;
 }
 
 .section-self {
@@ -77,10 +77,10 @@ html, body {
 	position: absolute;
 	width: 0;
 	height: 0;
-	border: 6px solid transparent;
+	border: 8px solid transparent;
 	border-left-color: #A8EC6C;
-	right: -12px;
-	top: 8px;
+	right: -14px;
+	top: 7px;
 }
 
 .control {
@@ -135,4 +135,11 @@ html, body {
 	border-radius: 4px;
 	background-color: rgba(0,0,0,0.2);
 	word-wrap: break-word;
+}
+
+.user-name {
+	line-height: 1;
+	font-size: 12px;
+	color: #f1f1f1;
+	margin-bottom: 3px;
 }
