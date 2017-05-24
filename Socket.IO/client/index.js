@@ -1,5 +1,9 @@
 var socket = a.socket;
 
+socket.on('connect', (skt) => {
+	console.log(skt);
+});
+
 //通知用户进入聊天室
 socket.on('user conncet', (data) => {
 	var str = data + '进入聊天室';
@@ -20,7 +24,7 @@ socket.on('user disconnect', (data) => {
 
 //接收消息
 socket.on('server message', (data) => {
-	console.log(data);
+	// console.log(data);
 	a.$content.innerHTML += '<div class="list">\
 								<p class="user-name text-left">'+ data.author +'</p>\
 								<div class="section">'+ data.text +'</div>\

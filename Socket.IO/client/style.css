@@ -43,7 +43,7 @@ html, body {
 	left: 0;
 	right: 0;
 	bottom: 60px;
-	padding: 15px;
+	padding: 15px 0;
 	overflow-y: auto;
 	background-image: url(./images/chat-bg.jpg);
 	background-size: cover;
@@ -132,7 +132,7 @@ html, body {
 }
 
 .list {
-	padding: 5px;
+	padding: 5px 20px;
 	overflow: hidden;
 	margin-top: 10px;
 }
