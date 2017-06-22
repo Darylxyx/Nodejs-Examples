@@ -5,6 +5,6 @@
 
 ```
 npm install
-node server
+npm start
 open loaclhost:8000
 ```
