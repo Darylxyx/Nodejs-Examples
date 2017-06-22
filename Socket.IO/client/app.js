@@ -20,7 +20,7 @@ App.prototype.sendMsg = function() {
 	});
 
 	this.$content.innerHTML += '<div class="list">\
-									<p class="user-name text-right">'+ '123123123123' +'</p>\
+									<p class="user-name text-right"></p>\
 									<div class="section section-self">'+ message +'</div>\
 								</div>';
 	this.$content.scrollTop = this.$content.scrollHeight;
