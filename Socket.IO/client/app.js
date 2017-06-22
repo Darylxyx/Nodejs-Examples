@@ -30,7 +30,6 @@ App.prototype.sendMsg = function() {
 //输入内容转义
 App.prototype.strEscape = function(str) {
 	var div = document.createElement('div');
-
 	if (div.innerText) {
 		div.innerText = str;
 	} else {
