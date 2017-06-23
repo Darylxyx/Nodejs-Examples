@@ -12,7 +12,7 @@ io.on('connection', (socket) => {
 	let user = '游客' + socket.id.substring(0, 6);
 	
 	//通知用户进入
-	io.local.emit('user conncet', user + '进入聊天室');
+	io.emit('user conncet', user + '进入聊天室');
 
 	//向客户端发送消息
 	socket.on('client message', (data, cb) => {
@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 	//通知用户离开
 	socket.on('disconnect', () => {
 		// console.log('user disconnected');
-		io.local.emit('user disconnect', user + '离开聊天室');
+		io.emit('user disconnect', user + '离开聊天室');
 	});
 
 	// io.clients((err, clients) => {
