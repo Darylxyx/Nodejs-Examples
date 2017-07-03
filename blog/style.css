@@ -3,7 +3,7 @@ html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input {
 	padding: 0;
 }
 
-.header {
+#header {
 	width: 100%;
 	height: 600px;
 	background-image: url(./blog-banner.jpg);
