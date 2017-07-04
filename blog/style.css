@@ -5,6 +5,11 @@ html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input, ul, ol, li {
 	padding: 0;
 }
 
+html, body {
+	font-family: '微软雅黑';
+	background-color: #f8f8f8;
+}
+
 ul, ol {
 	list-style-type: none;
 }
@@ -84,6 +89,30 @@ a {
 	color: #fff;
 }
 
+/*.menu {
+	position: relative;
+	color: transparent;
+}
+
+.menu::after {
+	color: #b8b8b8;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.menu:hover {
+	color: #fff;
+}
+
+#blog_nav_sitehome::after {
+	content: 'cnblog';
+}*/
+
+#blog_nav_rss_image {
+	display: none;
+}
+
 #blog_stats {
 	display: none;
 }
@@ -93,4 +122,45 @@ a {
 #main {
 	width: 1200px;
 	margin: 0 auto;
+	padding: 60px 0 70px 0;
+}
+
+.day {
+	margin-bottom: 40px;
+	border-bottom: 1px solid #ccc;
+}
+
+.postTitle {
+	font-size: 34px;
+	margin-bottom: 24px;
+	line-height: 1;
+}
+
+.postTitle a {
+	color: #4a4a4a;
+}
+
+.c_b_p_desc {
+	color: #4a4a4a;
+	line-height: 1.8;
+	font-size: 16px;
+}
+
+.c_b_p_desc_readmore {
+	color: #3BAEE7;
+}
+
+.postDesc {
+	font-size: 14px;
+	color: #9DABB3;
+	margin: 16px 0 15px 0;
+}
+
+.postDesc a {
+	color: #3BAEE7;
+	margin-left: 10px;
+}
+
+.dayTitle {
+	display: none;
 }
