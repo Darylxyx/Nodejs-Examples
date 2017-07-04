@@ -1,7 +1,19 @@
-html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input {
+/*base*/
+
+html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input, ul, ol, li {
 	margin: 0;
 	padding: 0;
 }
+
+ul, ol {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*header*/
 
 #header {
 	width: 100%;
@@ -10,4 +22,75 @@ html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: bottom center;
+	overflow: hidden;
+}
+
+#blogTitle {
+	text-align: center;
+	margin-top: 261px;
+}
+
+#lnkBlogLogo {
+	display: none;
+}
+
+#Header1_HeaderTitle {
+	color: #fff;
+	font-size: 64px;
+	line-height: 1;
+}
+
+#Header1_HeaderTitle::after {
+	content: "'s Blog";
+/*	font-size: 64px;
+	line-height: 1;*/
+}
+
+#blogTitle h2 {
+	font-size: 36px;
+	color: #fff;
+	margin-top: 6px;
+}
+
+#blogTitle h2::after {
+	content: 'Fucking the Damn World';
+}
+
+#navigator {
+	position: absolute;
+	width: 1200px;
+	top: 43px;
+	left: 50%;
+	margin-left: -600px;
+}
+
+#navList {
+	position: absolute;
+	top: 0;
+	right: 30px;
+	overflow: hidden;
+}
+
+#navList li {
+	float: left;
+	margin-left: 20px;
+}
+
+#navList li a {
+	color: #B8B8B8;
+}
+
+#navList li a:hover, #navList li a:active {
+	color: #fff;
+}
+
+#blog_stats {
+	display: none;
+}
+
+/*main*/
+
+#main {
+	width: 1200px;
+	margin: 0 auto;
 }
