@@ -1,9 +1,11 @@
 const Koa = require('koa');
 const fs = require('fs');
 const Router = require('koa-router');
-console.log(Promise);
+
 const app = new Koa();
 const home = new Router();
+
+console.log(123123);
 
 app.use(async (ctx) => {
     const url = ctx.request.url;
